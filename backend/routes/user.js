@@ -42,7 +42,20 @@ router.post("/signup", async (req, res) => {
         })
     }
 
-    const dbUser = await User.create(body)
+    const dbUser = await User.create({
+        username: req.body.username,
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
+    })
+
+    const userId = user._id;
+
+
+    await Account.create({
+        userId,
+        balance: 5000
+    })
     const token = jwt.sign({
         userId: dbUser._id
     }, JST_SECRET)
