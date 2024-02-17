@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
-const { Schema } = mongoose;
+const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://admin:admin@cluster0.mzzxlpo.mongodb.net/")
+mongoose.connect("mongodb://localhost:27017/cashapp")
 
-const userSchema = new Schema({
+// Create a Schema for Users
+const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -32,7 +32,7 @@ const userSchema = new Schema({
     }
 });
 
-const accountSchema = new Schema({
+const accountSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
@@ -42,12 +42,12 @@ const accountSchema = new Schema({
         type: Number,
         required: true
     }
-})
+});
 
-const User = mognoose.model('User',userSchema);
-const Account = mognoose.model('Account',accountSchema);
+const Account = mongoose.model('Account', accountSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = {
-    User,
-    Account 
+	User,
+    Account
 };
