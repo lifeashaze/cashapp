@@ -1,9 +1,8 @@
 import React from 'react'
 
-const SendMoney = () => {
+export const SendMoney = () => {
   return (
     <div>SendMoney</div>
   )
 }
 
-export default SendMoney
